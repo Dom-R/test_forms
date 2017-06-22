@@ -1,0 +1,13 @@
+<h1>Admin Panel<h1>
+
+<% @categories.each do |category| %>
+  <h3><%= category.name %></h3>
+  <ul>
+    <% category.sub_categories.each do |sub_category| %>
+      <li>
+        <%= sub_category.name %>
+        <%=  link_to "Edit", edit_sub_category_path(sub_category.slug) %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
