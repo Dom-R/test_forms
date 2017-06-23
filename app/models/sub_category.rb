@@ -4,8 +4,5 @@ class SubCategory < ActiveRecord::Base
 
   # Funcao trocada devido a Rails > 4.0 usar require.permit Ex: params.require(:subcategory).permit(:name, :slug)
   # attr_accessible :name, :slug
-  def subcategory_params
-    params.require(:subcategory).permit(:name, :slug)
-  end
-
+  # Funcao agora encontra-se nos helpers
 end

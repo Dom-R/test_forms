@@ -6,7 +6,7 @@
     <% category.sub_categories.each do |sub_category| %>
       <li>
         <%= sub_category.name %>
-        <%=  link_to "Edit", edit_sub_category_path(sub_category.slug) %>
+        <%=  link_to "Edit", edit_sub_category_path(sub_category) %>
       </li>
     <% end %>
   </ul>

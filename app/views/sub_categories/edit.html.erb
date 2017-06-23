@@ -1,0 +1,20 @@
+<h1><%= @sub_category.name %></h1>
+
+<h2>Formulário:</h2>
+<ul>
+  <%- # Order all fields by they order number -%>
+  <% @sub_category.fields.order(order: :asc).each do |field| %>
+    <li>
+      Order: <%= field.order %> |
+      Title: "<%= field.title %>" |
+      Type: <%= field.type %>
+      Values: <%= field.values if field.type == "checkbox" %>
+      <p>
+        <%= link_to "Delete", sub_category_field_path(@sub_category, field), method: :delete %>
+      </p>
+    </li>
+  <% end %>
+</ul>
+<%= render partial: 'form' %>
+
+<%= link_to "<< Back", admin_path %>

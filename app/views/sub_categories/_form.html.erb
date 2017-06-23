@@ -1,0 +1,24 @@
+<h3>Create a field</h3>
+
+<%= form_for [ @sub_category, @field ] do |f| %>
+  <ul>
+  <% @field.errors.full_messages.each do |error| %>
+    <li><%= error %></li>
+  <% end %>
+  </ul>
+  <p>
+    <%= f.label :order %><br />
+    <%= f.number_field :order, min: 1, :required => true %>
+  </p>
+  <p>
+    <%= f.label :title %><br />
+    <%= f.text_field :title, :required => true %>
+  </p>
+  <p>
+    <%= f.label :type %><br />
+    <%= f.select :type, options_for_select(@type_options), {prompt: 'Select type'}, :required => true %>
+  </p>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
