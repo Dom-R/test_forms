@@ -5,6 +5,10 @@ class SubCategoriesController < ApplicationController
     @field.sub_category_id = @sub_category.id
 
     # Array for options used in type dropdown
-    @type_options = [['Text', 'text'], ['Checkbox', 'checkbox']]
+    @type_options = Field.type_options
+  end
+
+  def show
+    @sub_category = SubCategory.find_by(slug: params[:slug])
   end
 end

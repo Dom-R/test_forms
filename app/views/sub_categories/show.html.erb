@@ -1,0 +1,18 @@
+<h2><%= @sub_category.name %></h2>
+
+<%= form_for "" do |f| %>
+  <% @sub_category.fields.order(order: :asc).each do |field| %>
+    <p>
+      <%= f.label field.title %>
+      </br>
+      <% if field.type == "checkbox" then %>
+        <%= f.select field.id, options_for_select(field.values), {prompt: 'Select value'}, :required => true %>
+      <% else %>
+        <%= f.text_area field.id, :required => true %>
+      <% end %>
+    </p>
+  <% end %>
+  <p>
+    <%= f.submit %>
+  </p>
+<% end %>
