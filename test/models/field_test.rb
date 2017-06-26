@@ -34,4 +34,9 @@ class FieldTest < ActiveSupport::TestCase
     @field.type = "date"
     assert_not_includes Field.type_options, @field.type, "Type is not in Field.type_options"
   end
+
+  test "values are only used on checkboxes" do
+    #@field.values = ["foo", "bar"]
+    #assert_not (false if @field.type != "checkbox" && @field.values != [], "Values not empty for type different than checkbox")
+  end
 end

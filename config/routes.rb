@@ -9,7 +9,11 @@ Rails.application.routes.draw do
 
   scope '/admin' do
     resources :sub_categories, only: [:edit] do
-      resources :fields, only: [:create, :edit, :destroy]
+      resources :fields, only: [:create, :edit, :destroy] do
+        member do
+          get :destroy_value
+        end
+      end
     end
   end
 

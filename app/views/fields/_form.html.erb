@@ -1,0 +1,5 @@
+<% @field = Field.find(field.id) %>
+<%= form_for @field, :url => edit_sub_category_field_path(sub_category_id: @field.sub_category_id, id: @field), :method => "get" do |f| %>
+  <%= f.text_field :val, :value => "", :required => true %>
+  <%= f.submit "Add new Value" %>
+<% end %>

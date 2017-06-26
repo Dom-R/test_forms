@@ -1,20 +1,30 @@
 <h1><%= @sub_category.name %></h1>
 
 <h2>Formulário:</h2>
-<ul>
+<ul class="fields">
   <%- # Order all fields by they order number -%>
   <% @sub_category.fields.order(order: :asc).each do |field| %>
-    <li>
-      Order: <%= field.order %> |
-      Title: "<%= field.title %>" |
-      Type: <%= field.type %>
-      Values: <%= field.values if field.type == "checkbox" %>
-      <p>
-        <%= link_to "Delete", sub_category_field_path(@sub_category, field), method: :delete %>
-      </p>
-    </li>
+    <li id="<%= field.id %>">Order: <%= field.order %></li>
+    <ul>
+      <li>Title: "<%= field.title %>"</li>
+      <li>Type: <%= field.type %></li>
+      <%- # if a field is of type checkbox render the options of the checkbox and the management part of said options -%>
+      <% if field.type == "checkbox" then %>
+        <li>Values:</li>
+        <ul class="values">
+          <% field.values.each do |value| %>
+            <li><%= value %> <%= link_to "Delete", destroy_value_sub_category_field_path(@sub_category, field, :value => value) %></li>
+          <% end %>
+            <%- # Render the form to add new options to a checkbox -%>
+            <li><%= render partial: 'fields/form', locals: {field: field} %></li>
+        </ul>
+      <% end %>
+      <li><%= link_to "Delete Field", sub_category_field_path(@sub_category, field), method: :delete %></li>
+    </ul>
+    </br>
   <% end %>
 </ul>
+<%- # Render the form to add a new field -%>
 <%= render partial: 'form' %>
 
 <%= link_to "<< Back", admin_path %>
